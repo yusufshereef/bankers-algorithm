@@ -1,0 +1,74 @@
+Banker's Algorithm - Test Cases
+
+================================================
+Test Case 1: Standard Safe State
+================================================
+Description: Models a typical operating system scenario with 5 processes competing for 3 resource types. The system is able to find a safe execution order without deadlocking.
+
+Inputs:
+- Processes: 5
+- Resources: 3
+- Available: 3 3 2
+
+Maximum Matrix:
+P0: 7 5 3
+P1: 3 2 2
+P2: 9 0 2
+P3: 2 2 2
+P4: 4 3 3
+
+Allocation Matrix:
+P0: 0 1 0
+P1: 2 0 0
+P2: 3 0 2
+P3: 2 1 1
+P4: 0 0 2
+
+Expected Result: System is in a SAFE state. 
+Safe Sequence: P1 -> P3 -> P4 -> P0 -> P2
+
+
+================================================
+Test Case 2: Unsafe State (Deadlock)
+================================================
+Description: Restricts available resources significantly. None of the processes can satisfy their initial needs, simulating an immediate deadlock.
+
+Inputs:
+- Processes: 3
+- Resources: 2
+- Available: 1 1
+
+Maximum Matrix:
+P0: 4 2
+P1: 3 2
+P2: 2 2
+
+Allocation Matrix:
+P0: 2 0
+P1: 1 1
+P2: 0 1
+
+Expected Result: System is in an UNSAFE state. No safe sequence exists.
+
+
+================================================
+Test Case 3: Delayed Unsafe State
+================================================
+Description: Looks safe initially because one process can run, but it doesn't free up enough resources to let the remaining processes finish.
+
+Inputs:
+- Processes: 3
+- Resources: 3
+- Available: 2 0 0
+
+Maximum Matrix:
+P0: 3 2 2
+P1: 6 1 3
+P2: 3 1 4
+
+Allocation Matrix:
+P0: 1 0 0
+P1: 4 1 1
+P2: 2 1 1
+
+Expected Result: System is in an UNSAFE state. (P0, P1, and P2 will all eventually block).
